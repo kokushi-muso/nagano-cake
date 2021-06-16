@@ -16,10 +16,6 @@
       <p id='alert'><%= flash[:alert] %></p>
       <%= yield %>
     </main>
-    <footer class="bg-light mx-auto pt-4 pb-3 shadow-sm">
-      <div class="container text-center">
-        <p class="text-secondary small">Copyrights ©︎ KokushiMuso. All Rights Reserved.</p>
-      </div>
-    </footer>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

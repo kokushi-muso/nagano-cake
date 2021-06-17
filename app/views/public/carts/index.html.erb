@@ -1,2 +1,46 @@
-<h1>Public::Carts#index</h1>
-<p>Find me in app/views/public/carts/index.html.erb</p>
+<h1>ショッピングカート</h1>
+<%= link_to "カートを空にする", cart_path(@cart), method: :delete, class: "btn btn-danger" %>
+
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td>
+          <%= attachment_image_tag(@order_item, :image :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+        </td>
+
+        <td>
+          <%= @item.price_including_tax %>
+        </td>
+
+        <td>
+          <%= form_with model: @order_item do |f| %>
+            <%= f.select :quantity, ["1","2","3","4","5"]
+            # プルダウンリストの数を決め、それを短く記述できるコードを考える。
+            <%= f.submit class: 'btn btn-success' %>
+          <% end %>
+        </td>
+
+        <td>
+          <%= link_to "削除する", cart_path(@cart), method: :delete, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+
+  <%= total_price %>
+
+  <%= link_to "情報入力に進む", order_path(@order), class: "btn btn-success" %>

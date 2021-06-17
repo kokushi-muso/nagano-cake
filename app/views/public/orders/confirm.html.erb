@@ -1,2 +1,66 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<h1>注文情報確認</h1>
+
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <%= attachment_image_tag(@order_item, :image :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+      </td>
+
+      <td>
+        <%= @item.price_including_tax %>
+      </td>
+
+      <td>
+        <%= @item.quantity %>
+      </td>
+
+      <td>
+        <%= @item.total_price %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>送料</th>
+      <th>商品合計</th>
+      <th>請求金額</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <%= @orders.shipping_fee %>
+      </td>
+
+      <td>
+        <%= @order.amount %>
+      </td>
+
+      <td>
+        <%= @order.total_price %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>支払方法</h1>
+ <%= @orders.payment_method %>
+
+<h1>お届け先</h1>
+  <%- @orders.address %>
+
+<%= link_to "注文を確定する", orders_thanks_path, class: "btn-btn-success" %>

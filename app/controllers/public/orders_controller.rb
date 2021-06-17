@@ -13,4 +13,11 @@ class Public::OrdersController < ApplicationController
 
   def show
   end
+
+  def amount
+  end
+
+  def total_price
+  end
+
 end

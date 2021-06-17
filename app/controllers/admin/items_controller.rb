@@ -2,6 +2,7 @@ class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
     # ページネーション
+    # @genre = @item.genre
   end
 
   def new
@@ -11,13 +12,18 @@ class Admin::ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    @item.save
+    if @item.save
+      # 詳細画面へ遷移
       redirect_to admin_item_path(@item.id)
+    else
+      redirect_back(fallback_location: root_path)
+    end
     
   end
 
   def show
     @item = Item.find(params[:id])
+    @genre = @item.genre
   end
 
   def edit
@@ -27,7 +33,8 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to item_path(item.id)
+      # 詳細画面へ遷移
+       redirect_to admin_item_path(@item.id)
     else
       redirect_back(fallback_location: root_path)
     end     

@@ -1,2 +1,64 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<h5 class="my-4 px-4 bg-light d-inline-flex">会員情報編集</h5>
+
+<%= form_with model: @customer, url: customer_path(@customer), method: :PATCH, local: true do |f| %>
+  
+  <div class="row mb-3">
+    <label class="col-lg-3">名前</label>
+    <div class="col-lg-3">
+      <span class="mr-3">(姓)</span>
+      <%= f.text_field :last_name, autocomplete: 'first_name', placeholder:"令和" %>
+    </div>
+    <div class="col-lg-3">
+      <span class="mr-3">(名)</span>
+      <%= f.text_field :first_name, autocomplete: 'last_name', placeholder:'道子' %>    
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <label class="col-lg-3">フリガナ</label>
+    <div class="col-lg-3">
+      <span>(セイ)</span>
+      <%= f.text_field :last_name_kana, autocomplete: 'first_name_kana', placeholder:'レイワ' %>
+    </div>
+    <div class="col-lg-3">
+      <span>(メイ)</span>
+      <%= f.text_field :first_name_kana, autocomplete: 'last_name_kana', placeholder:'ミチコ' %>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <label class="col-lg-3">郵便番号(ハイフンなし)</label>
+    <div class="col-lg-3">
+      <%= f.text_field :postcode, autocomplete: 'postcode', placeholder:'0000000', class:'ml-5' %>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <label class="col-lg-3">住所</label>
+    <div class="col-lg-7">
+      <%= f.text_field :address , size: '56', autocomplete: 'address',placeholder:'東京都渋谷区代々木神園町0-0', class:'ml-5' %>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <label class="col-lg-3">電話番号(ハイフンなし)</label>
+    <div class="col-lg-3">
+      <%= f.text_field :phone_number, autocomplete: 'phone_number', class: 'ml-5' %>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <label class="col-lg-3">メールアドレス</label>
+    <div class="col-lg-3">
+      <%= f.email_field :email, autocomplete: "email", class:'ml-5', placeholder:'sample@exanple.com' %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <lavel class="col-lg-3"></lavel>
+    <div class="col-lg-3">
+      <%= f.submit "編集内容を保存" , class:'btn btn-success ml-5 btn-sm px-5 mb-5' %>
+    </div>
+  </div>
+  
+<% end %>

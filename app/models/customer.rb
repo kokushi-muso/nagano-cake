@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # ======お客様登録時のバリデーション=======================
+  # ======お客様登録時のバリデーション============
   with_options presence: true do
     validates :first_name
     validates :last_name
@@ -20,6 +20,11 @@ class Customer < ApplicationRecord
     validates :email
     validates :postcode
     validates :phone_number
+  end
+  
+  #カスタマーが退会していなければであればtrue
+  def active_for_authentication?
+    super && (self.is_valid == true)
   end
         
 end

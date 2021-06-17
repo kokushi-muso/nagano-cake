@@ -18,6 +18,26 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
+  end
+  
+  def update
+    addresses = current_customer.addresses
+    address = addresses.find(params[:id])
+    if address.update(address_params)
+      flash[:notice] = 'アドレスの変更が完了しました'
+      redirect_to addresses_path
+    else
+      @address = address
+      render :edit
+    end
+  end
+  
+  def destroy
+    addresses = current_customer.addresses
+    address = addresses.find(params[:id])
+    address.destroy
+    redirect_to addresses_path
   end
   
     private

@@ -4,4 +4,13 @@ class Address < ApplicationRecord
   def customer_imformation
     "〒" + self.postcode + " " + self.address + " " + self.recieve_name
   end
+
+  #==配送先登録のバリデーション==
+  with_options presence: true do
+    validates :postcode
+    validates :address
+    validates :recieve_name
+    validates :customer_id
+  end
+
 end

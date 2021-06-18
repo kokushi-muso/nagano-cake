@@ -19,8 +19,10 @@ Rails.application.routes.draw do
     get "about" => 'homes#about'
     get "customers/mypage" => "customers#mypage"
     resources :customers, only:[:edit, :update] do
-      get 'customers/unsubcribe'
-      patch 'customers/withdraw'
+      collection do
+        get 'unsubcribe' #退会画面
+        patch 'withdraw' #is_validを更新する
+      end
     end
   end
 

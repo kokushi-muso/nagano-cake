@@ -1,16 +1,12 @@
-<header>ヘッダー</header>
-
 <main>
-  <h1>商品一覧</h1><h4>全<%= @items.count %>件</h4>
-  <% @items.each do |f| %>
+  <h1>商品一覧</h1><h4>（全<%= @items.count %>件）</h4>
+  <% @items.each do |item| %>
     <%= link_to item_path(item) do %>
-      <%= f.attachment_field :image %>
+      <%= attachment_image_tag item, :image, :fill, 100, 100 %>
     <% end %>
-    <%= f.name %>
-    ￥<%= f.price_excluding_tax %>
+    <%= item.name %>
+    ￥<%= item.price_excluding_tax.to_s(:delimited) %>
   <% end %>
 </main>
 
 <%= paginate @items %>
-
-<footer>フッター</footer>

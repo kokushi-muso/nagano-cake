@@ -18,15 +18,13 @@
       </td>
 
       <td>
-        <%= @order.address %>
+        〒<%= @order.postcode %><br>
+        <%= @order.address %><br>
+        <%= @order.recieve_name %>
       </td>
 
       <td>
-        <!--orderしたitemのname-->
-      </td>
-
-      <td>
-        <%= @order.total_price %>
+        <%= @order.payment_method %>
       </td>
 
       <td>
@@ -50,7 +48,8 @@
   <tbody>
     <tr>
       <td>
-        <%= @order.total_price %>
+        <%= @order.total_price.to_s(:delimited) %>
+        <!--to_s(:delimited)で3桁区切りを表示する-->
       </td>
 
       <td>
@@ -58,7 +57,7 @@
       </td>
 
       <td>
-        <%= ご請求額を出す %>
+        <%= (@order.total_price.to_i + @order.shipping_fee.to_i).to_s(:delimited) %>
       </td>
     </tr>
   </tbody>
@@ -77,17 +76,20 @@
 
   <tbody>
     <tr>
-    <% @order_items.each do |f| %>
       <td>
-        <%= f.name %>
+        商品名
       </td>
 
       <td>
-        <%= f.quantity %>
+        価格
       </td>
 
       <td>
-        <%= 小計 %>
+        注文個数
+      </td>
+
+      <td>
+        小計
       </td>
     </tr>
   </tbody>

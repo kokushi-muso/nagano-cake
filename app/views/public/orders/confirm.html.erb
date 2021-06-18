@@ -11,17 +11,18 @@
   </thead>
 
   <tbody>
+    <% @order_items.each do |order_item| %>
     <tr>
       <td>
         <%= attachment_image_tag(@order_item, :image :fill, 50, 50, fallback: "no-image-icon.jpg") %>
       </td>
 
       <td>
-        <%= @item.price_including_tax %>
+        <%= @order_item.item.price_including_tax %>
       </td>
 
       <td>
-        <%= @item.quantity %>
+        <%= @item.count %>
       </td>
 
       <td>

@@ -13,30 +13,35 @@
   </thead>
 
   <tbody>
+    <% @orders.each do |order| %>
     <tr>
       <td>
-        <%= @order.created_at.strftime('%Y/%m/%d') %>
+        <%= order.created_at.strftime('%Y/%m/%d') %>
       </td>
 
       <td>
-        <%= @order.address %>
+        〒<%= order.postcode %><br>
+        <%= order.address %><br>
+        <%= order.recieve_name %>
       </td>
 
       <td>
-        <!--orderしたitemのname-->
+        orderしたitemのname
       </td>
 
       <td>
-        <%= @order.total_price %>
+        <%= order.total_price.to_s(:delimited) %>円
+        <!--to_s(:delimited)で3桁区切りを表示する-->
       </td>
 
       <td>
-        <%= @order.order_status %>
+        <%= order.order_status %>
       </td>
 
       <td>
-        <%= link_to "表示する", order_path(@order), class: "btn btn-success" %>
+        <%= link_to "表示する", order_path(order), class: "btn btn-primary" %>
       </td>
     </tr>
+    <% end %>
   </tbody>
 </table>

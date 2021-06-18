@@ -1,23 +1,21 @@
 class Public::OrdersController < ApplicationController
   def new
+    @order = Order.new
   end
 
   def confirm
+    @order_items = Ordes.item.all
   end
 
   def thanks
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
-  end
-
-  def amount
-  end
-
-  def total_price
+    @order = Order.find(params[:id])
   end
 
 end

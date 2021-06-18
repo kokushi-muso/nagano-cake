@@ -17,7 +17,7 @@ Customer.create(
   password: 'nagano',
   password_confirmation: 'nagano'
   )
-  
+
 Customer.create(
   first_name: '道子',
   last_name: '令和',
@@ -43,7 +43,7 @@ Customer.create(
   password: 'kokushi',
   password_confirmation: 'kokushi'
   )
-  
+
 Customer.create(
   first_name: '麻子',
   last_name: '雀川',

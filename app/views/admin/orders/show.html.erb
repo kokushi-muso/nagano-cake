@@ -1,44 +1,109 @@
-<h1>注文履歴詳細</h1>
-<table>
-    <tr>
-    　<th>購入者</th>
-    　<td><%= @order.customer.first_name+@order.customer.last_name %></td>
-    </tr>
-    <tr>
-    　<th>注文日</th>
-    　<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-    </tr>
-    <tr>
-    　<th>配送先</th>
-    　<td>
-    　    <%= @order.postcode %>
-         <%= @order.address %><br>
-    　   <%= @order.recieve_name %>
-    　</td>
-    </tr>
-    <tr>
-    　<th>支払い方法</th>
-    　<td><%= @order.payment_method %></td>
-    </tr>
-    <tr>
-    　<th>注文ステータス</th>
-    　  <td><%= @order.order_status %></td>
-    </tr>
-</table>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-12">
+      <h1>注文履歴詳細</h1>
+      <!--会員情報-->
+      <table>
+        <tr>
+        　<th>購入者</th>
+        　<td>
+          　<%= link_to admin_customer_path(@order) do %>
+              <%= @order.customer.last_name+@order.customer.first_name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+        　<th>注文日</th>
+        　<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+        　<th>配送先</th>
+        　<td>
+        　    <%= @order.postcode %>
+             <%= @order.address %><br>
+        　   <%= @order.recieve_name %>
+        　</td>
+        </tr>
+        <tr>
+        　<th>支払い方法</th>
+        　<td><%= @order.payment_method %></td>
+        </tr>
+        <tr>
+        　<th>注文ステータス</th>
+          <td>
+    　       <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+              <div class="row">
+              	<div class="col-2">
+                  <div class="form-group">
+                    <%= f.select :order_status, Order.order_statuses.keys, class: "order_statusc form-control" %>
+                  </div>
+                </div>
+                <div class="col-2 align-self-end">
+                  <div class="form-group">
+                    <%= f.submit '更新'  ,class: "btn btn-primary ml-5" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
 
-<table>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>製作ステータス</th>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+      <!--商品情報-->
+      <table>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+        </tr>
+        <tr>
+          <% @order_items.each do |item| %>
+            <td><%= item.item.name %></td>
+            <td><%= item.price_including_tax %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.quantity * item.price_including_tax %></td>
+            <td>
+              <%= form_with model: item, url: admin_order_order_item_path(item), method: :patch, local: true do |f| %>
+                <div class="row">
+                	<div class="col-2">
+                    <div class="form-group">
+                      <%= f.select :product_status, OrderItem.product_statuses.keys, class: "product_status" %>
+                    </div>
+                  </div>
+                  <div class="col-2 align-self-end">
+                    <div class="form-group">
+                      <%= f.submit '更新'  ,class: "btn btn-primary ml-5" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+      <!--料金情報-->
+      <table>
+        <tr>
+          <th>商品合計</th>
+          <td>
+            <%= @order.total_price.to_s(:delimited) %>
+          </td>
+        </tr>
+        <tr>
+          <th>配送料</th>
+          <td>
+            <%= @order.shipping_fee %>
+          </td>
+        </tr>
+        <tr>
+          <th>ご請求額</th>
+          <td>
+            <%= (@order.total_price.to_i + @order.shipping_fee.to_i).to_s(:delimited) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

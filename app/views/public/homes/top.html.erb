@@ -1,2 +1,43 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="img-wrapper">
+  <div id="mainvisual"></div>
+</div>
+
+
+<div class="text">
+  <h1 class="site-title">ながの Cake</h1>
+  <p>ようこそながのCAKEへ!</p>
+  <p>このサイトは、ケーキ販売のECサイトになります。</p>
+  <p>会員ではない方も商品の閲覧ができますが</p>
+  <p>購入には会員登録が必要です。</p>
+</div>
+
+<ul class="flex">
+  <li class="item">
+    <img src="/assets/cake2.jpeg" alt="">
+    <div class="mask">
+      <div class="caption"><p>商品説明</p></div>
+    </div>
+  </li>
+  <li class="item">
+    <img src="/assets/prin1.jpeg" alt="">
+    <div class="mask">
+      <div class="caption"><p>商品説明</p></div>
+    </div>
+    </li>
+  <li class="item">
+    <img src="assets/cookie1.jpeg" alt="">
+    <div class="mask">
+      <div class="caption"><p>商品説明</p></div>
+    </div>
+  </li>
+  <li class="item">
+    <img src="assets/cake11.jpeg" alt="">
+    <div class="mask">
+      <div class="caption"><p>商品説明</p></div>
+    </div>
+  </li>
+</ul>
+
+<div class="text">
+  <%= link_to '全ての商品を見る', items_path, class:"btn btn-outline-dark" %>
+</div>

@@ -62,3 +62,24 @@ Admin.create(
   password:'nagano',
   password_confirmation:'nagano'
   )
+
+Address.create(
+  postcode: '3334444',
+  address: '岡山県岡山市北区内山下0-0',
+  recieve_name: '伊原木隆子',
+  customer_id: 1
+  )
+
+Address.create(
+  postcode: '5552222',
+  address: '大阪府大阪市中央区大手前0-0',
+  recieve_name: '吉村 洋子',
+  customer_id: 1
+  )
+  
+Address.create(
+  postcode: '6661111',
+  address: '福岡県福岡市博多区東公園0-0',
+  recieve_name: '服部誠子',
+  customer_id: 1
+  )

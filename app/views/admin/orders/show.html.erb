@@ -2,7 +2,7 @@
 <table>
     <tr>
     　<th>購入者</th>
-    　<td><%= first_name(@order.customer)+last_name(@order.customer) %></td>
+    　<td><%= @order.customer.first_name+@order.customer.last_name %></td>
     </tr>
     <tr>
     　<th>注文日</th>
@@ -18,11 +18,11 @@
     </tr>
     <tr>
     　<th>支払い方法</th>
-    　<td><%= @order.payment_method</td>
+    　<td><%= @order.payment_method %></td>
     </tr>
     <tr>
     　<th>注文ステータス</th>
-    　<td>入金待ち</td>
+    　  <td><%= @order.order_status %></td>
     </tr>
 </table>
 

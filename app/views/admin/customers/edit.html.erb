@@ -1,67 +1,111 @@
 <main>
   <div class = "container">
-    <h1><%= @customer.last_name + " " + @customer.first_name %>さんの会員詳細</h1>
+    <h1><%= @customer.last_name + " " + @customer.first_name %>さんの会員情報編集</h1>
     
       <%= form_with model:@customer, url: admin_customer_path(@customer.id), local:true do |f| %>
       
-        <div class = "form-group">
-          <label class ="customer_id">会員ID</label>
-            <%= @customer.id %>
+      
+      <table>
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="customer_id">会員ID</label>
+            </th>
+            <td width="200" height="50">
+             <%= @customer.id %>
+            </td>
+          </tr>
         </div>
         
-        <div class = "form-group ">
-          <label class ="customer_name">氏名</label>
-            <div class = "form-cntrol">
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="customer_name">氏名</label>
+            </th>
+            <td>
               <%= f.text_field :last_name,size: "25" %>
               <%= f.text_field :first_name,size: "25" %>
-            </div>
+            </td>
+          </tr>
         </div>
-        
-        <div class = "form-group ">
-          <label class ="customer_name_kana">フリガナ</label>
-            <div class = "form-cntrol">
+         
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="customer_name_kana">フリガナ</label>
+            <td>
               <%= f.text_field :last_name_kana,size: "25" %>
               <%= f.text_field :first_name_kana,size: "25" %>
-            </div>
-        </div>
-        
-        <div class = "form-group ">
-          <label class ="postcode">郵便番号</label>
-            <div class = "form-cntrol">
+            </td>
+          </tr>
+        </div>      
+
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="postcode">郵便番号</label>
+            </th>
+            <td width="200" height="50">
               <%= f.text_field :postcode,size: "25" %>
-            </div>
-        </div>
-        
-        <div class = "form-group ">
-          <label class ="address">住所</label>
-            <div class = "form-cntrol">
+            </td>
+          </tr>
+        </div>      
+
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="address">住所</label>
+            </th>
+            <td width="200" height="50">
               <%= f.text_field :address,size: "80" %>
-            </div>
-        </div>
+            </td>
+          </tr>
+        </div>    
         
-        <div class = "form-group ">
-          <label class ="phone_number">電話番号</label>
-            <div class = "form-cntrol">
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="phone_number">電話番号</label>
+            </th>
+            <td width="200" height="50">
               <%= f.text_field :phone_number,size: "25" %>
-            </div>
-        </div>
+            </td>
+          </tr>
+        </div>      
         
-        <div class = "form-group ">
-          <label class ="email">メールアドレス</label>
-            <div class = "form-cntrol">
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="email">メールアドレス</label>
+            </th>
+            <td width="200" height="50">
               <%= f.text_field :email,size: "25" %>
-            </div>
-        </div>
-  
-        <div class = "form-group ">
-          <label class ="is_valid">会員ステータス</label>
+            </td>
+          </tr>
+        </div>      
+
+        <div class ="form">
+         <tr>
+            <th width="200" height="50">
+             <label class ="is_valid">会員ステータス</label>
+            </th>
+            <td width="200" height="50">
             <%= f.radio_button :is_valid, :true %>
             <%= f.label :is_valid,"有効", {value: :true, style: "display: inline-block;"} %>
             <%= f.radio_button :is_valid, :false %>
             <%= f.label :is_valid,"退会", {value: :false, style: "display: inline-block;"} %>
-        </div>
-        <%= f.submit "変更を保存",class: "btn btn-success" %>
-      </div>
+            </td>
+          </tr>
+        </div>     
+
+          <tr>
+            <th width="200" height="50"></th>
+            <td width="200" height="50">
+              <%= f.submit "変更を保存",class: "btn btn-success" %>
+            </td>
+          </tr>
+        </table>
+  
     <% end %>
   </div>
 </main>

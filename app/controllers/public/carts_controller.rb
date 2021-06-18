@@ -5,15 +5,15 @@ class Public::CartsController < ApplicationController
 
   def create
     @cart = Cart.new(cart_params)
-    @cart.customer_id = current_customer.id
-    cart.save
+    @cart.item_id =
+    @cart.save
     redirect_to carts_path
   end
 
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
-    redirect_to cart_path(@cart)
+    redirect_to carts_path
   end
 
   def update

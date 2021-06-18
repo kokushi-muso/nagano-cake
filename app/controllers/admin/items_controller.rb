@@ -6,7 +6,6 @@ class Admin::ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    # @genre = @item.genre
   end
   
   def create

@@ -11,24 +11,25 @@
   </thead>
 
   <tbody>
-    <% @order_items.each do |order_item| %>
+    <% @carts.each do |cart| %>
     <tr>
       <td>
-        <%= attachment_image_tag(@order_item, :image :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+        <%= attachment_image_tag cart.item, :image, size:"50x50" %>
       </td>
 
       <td>
-        <%= @order_item.item.price_including_tax %>
+        <%= (cart.item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %>
       </td>
 
       <td>
-        <%= @item.count %>
+        <%= cart.quantity %>
       </td>
 
       <td>
-        <%= @item.total_price %>
+        <%= ((cart.item.price_excluding_tax * 1.1).to_i * cart.quantity).to_s(:delimited) %>
       </td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 
@@ -41,27 +42,31 @@
     </tr>
   </thead>
 
+  <%= form_with model: @order, local: true do |f| %>
   <tbody>
     <tr>
       <td>
-        <%= @orders.shipping_fee %>
+        <%= f.hidden_field :shipping_fee, :value=> 800 %>
       </td>
 
       <td>
-        <%= @order.amount %>
-      </td>
-
-      <td>
+        <!--後で小計の総和を表示する-->
         <%= @order.total_price %>
+      </td>
+
+      <td>
+        <%= 1800 %>
       </td>
     </tr>
   </tbody>
 </table>
 
 <h1>支払方法</h1>
- <%= @orders.payment_method %>
+ <%= @order.payment_method %>
 
 <h1>お届け先</h1>
-  <%- @orders.address %>
+  <%= @order.address %>
 
-<%= link_to "注文を確定する", orders_thanks_path, class: "btn-btn-success" %>
+<br>
+<%= f.submit "注文を確定する", class: "btn btn-success" %>
+<% end %>

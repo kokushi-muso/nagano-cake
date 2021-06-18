@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :addresses, except:[:new, :show]
     resources :orders, except:[:destroy, :edit, :update]
-    post 'orders/confirm'
-    get 'orders/thanks'
+    resources :orders do
+      post :confirm, action: :confirm, on: :new
+      get :thanks, action: :thanks, on: :new
+    end
     resources :carts, except:[:new, :show, :edit]
     resources :items, only:[:index, :show]
     root to: 'homes#top'

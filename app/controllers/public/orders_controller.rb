@@ -43,7 +43,6 @@ class Public::OrdersController < ApplicationController
     carts.each do |cart|
       order_item = OrderItem.new
       order_item.item_id = cart.item.id
-      order_params
       order_item.quantity = cart.quantity
       order_item.price_including_tax = cart.item.price_excluding_tax * cart.quantity * TAX
       order_item.order_id = @order_id

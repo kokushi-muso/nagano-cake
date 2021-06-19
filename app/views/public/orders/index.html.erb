@@ -1,43 +1,39 @@
+<div class="container col-md-10">
+
 <h1>注文履歴一覧</h1>
 
-<table class='table table-hover table-inverse'>
+<table class='table small'>
   <thead>
     <tr>
-      <th>注文日</th>
+      <th class="col-1">注文日</th>
       <th>配送先</th>
       <th>注文商品</th>
-      <th>支払金額</th>
-      <th>ステータス</th>
-      <th>注文詳細</th>
+      <th class="col-1">支払金額</th>
+      <th class="col-1">ステータス</th>
+      <th class="col-1">注文詳細</th>
     </tr>
   </thead>
-
   <tbody>
     <% @orders.each do |order| %>
     <tr>
       <td>
         <%= order.created_at.strftime('%Y/%m/%d') %>
       </td>
-
-      <td>
-        〒<%= order.postcode %><br>
+      <td>〒<%= order.postcode %><br>
         <%= order.address %><br>
         <%= order.recieve_name %>
       </td>
-
       <td>
-        <%= current_customer.carts %>
+        <% order.order_items.each do |item| %>
+        <%= item.item.name %>
+        <% end %>
       </td>
-
       <td>
         <%= order.total_price.to_s(:delimited) %>円
-        <!--to_s(:delimited)で3桁区切りを表示する-->
       </td>
-
       <td>
         <%= order.order_status %>
       </td>
-
       <td>
         <%= link_to "表示する", order_path(order), class: "btn btn-primary" %>
       </td>
@@ -45,3 +41,5 @@
     <% end %>
   </tbody>
 </table>
+  
+</div>

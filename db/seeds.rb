@@ -63,6 +63,7 @@ Admin.create(
   password_confirmation:'nagano'
   )
 
+
 Address.create(
   postcode: '3334444',
   address: '岡山県岡山市北区内山下0-0',
@@ -83,3 +84,4 @@ Address.create(
   recieve_name: '服部誠子',
   customer_id: 1
   )
+

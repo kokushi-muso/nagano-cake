@@ -21,10 +21,10 @@ class Customer < ApplicationRecord
     validates :postcode
     validates :phone_number
   end
-  
-  #カスタマーが退会していなければであればtrue
+
+  #カスタマーが退会していなければtrue
   def active_for_authentication?
     super && (self.is_valid == true)
   end
-        
+
 end

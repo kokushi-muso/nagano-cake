@@ -5,8 +5,8 @@
 
       <h1>ジャンル編集</h1>
         <div class="col-md-10">
+        <%= form_with model:@genre, url: admin_genre_path(@genre.id), local:true do |f| %>
           <table>
-          <%= form_with model:@genre, url: admin_genre_path(@genre.id), local:true do |f| %>
             <div class="form-group">
               <tr>
                <th><label for="genre_nanme">ジャンル名</label></th>
@@ -14,10 +14,11 @@
                 <td><%= f.submit "変更を保存",class: "btn btn-success" %></td>
               </tr>
             </div>
-          <% end %>
         </table>
+        <% end %>
 =======
       </div>
     </div>
   </div>
 </main>
+</main> 

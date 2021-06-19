@@ -12,7 +12,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       # 詳細画面へ遷移
-      redirect_to admin_item_path(@item.id)
+      redirect_to admin_item_path(@item.id), notice: "登録ができました"
     else
       redirect_back(fallback_location: root_path)
     end
@@ -32,7 +32,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
       # 詳細画面へ遷移
-       redirect_to admin_item_path(@item.id)
+       redirect_to admin_item_path(@item.id), notice: "編集ができました"
     else
       redirect_back(fallback_location: root_path)
     end     

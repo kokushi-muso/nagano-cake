@@ -1,5 +1,7 @@
 class Customer < ApplicationRecord
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :carts, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
@@ -21,10 +23,10 @@ class Customer < ApplicationRecord
     validates :postcode
     validates :phone_number
   end
-  
-  #カスタマーが退会していなければであればtrue
+
+  #カスタマーが退会していなければtrue
   def active_for_authentication?
     super && (self.is_valid == true)
   end
-        
+
 end

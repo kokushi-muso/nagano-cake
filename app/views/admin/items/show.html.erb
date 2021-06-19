@@ -26,11 +26,15 @@
           </tr>
           <tr>
             <th width="200" height="50">販売ステータス</th>
-            <td width="400" height="50"><%= @item.is_active ? "販売中" : "販売停止中" %></td>
+
+            <td width="400" height="50"><%= @item.is_active ? "販売中" : "売切れ" %></td>
+=======
           </tr>
         </table>
         <%= link_to "編集する", edit_admin_item_path(@item.id),class: "btn btn-success" %>
       </div>
     </div>
   </div>
+
 </main>
+=======

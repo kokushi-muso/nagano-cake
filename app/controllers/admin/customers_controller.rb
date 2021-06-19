@@ -16,7 +16,7 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       # 詳細画面へ遷移
-      redirect_to admin_customer_path(customer.id)
+      redirect_to admin_customer_path(@customer.id)
     else
       redirect_back(fallback_location: root_path)
     end

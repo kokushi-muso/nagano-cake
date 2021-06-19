@@ -63,6 +63,7 @@ Admin.create(
   password_confirmation:'nagano'
   )
 
+
 Address.create(
   postcode: '3334444',
   address: '岡山県岡山市北区内山下0-0',
@@ -161,4 +162,3 @@ Item.create(
   price_excluding_tax: 1200,
   is_active: true
   )
-

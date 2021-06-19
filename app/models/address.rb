@@ -13,4 +13,7 @@ class Address < ApplicationRecord
     validates :customer_id
   end
 
+  
 end
+
+=======

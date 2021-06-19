@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :customers, except:[:destroy, :create, :new]
     resources :items, except:[:destroy]
     resources :orders, except:[:new, :destroy, :edit, :create] do
-      resources :order_items, only:[:update]
+    resources :order_items, only:[:update]
     end
   end
 

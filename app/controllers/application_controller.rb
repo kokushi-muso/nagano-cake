@@ -36,5 +36,4 @@ class ApplicationController < ActionController::Base
       :is_valid
     ])
   end
-
 end

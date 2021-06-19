@@ -10,4 +10,7 @@ class Address < ApplicationRecord
   end
   
 end
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/develop

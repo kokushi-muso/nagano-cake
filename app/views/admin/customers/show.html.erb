@@ -36,9 +36,16 @@
             <th width="200" height="50">会員ステータス</th>
             <td width="400" height="50"><%= @customer.is_valid ? "有効" : "退会" %></td>
           </tr>
+
+          <tr>
+          <th></th>
+            <td>
+              <%=link_to "編集する", edit_admin_customer_path(@customer.id),class: "btn btn-success" %>
+              <%=link_to "注文履歴一覧を見る", admin_orders_path,class: "btn btn-primary" %>
+            </td>
+          </tr>
         </table>
-        <%=link_to "編集する", edit_admin_customer_path(@customer.id),class: "btn btn-success" %>
-        <%=link_to "注文履歴一覧を見る", admin_orders_path,class: "btn btn-primary" %>
+=======
       </div>
     </div>
   </div>

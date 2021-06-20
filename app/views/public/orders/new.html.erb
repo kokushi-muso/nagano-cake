@@ -1,3 +1,4 @@
+<p id='alert' class="mb-0"><%= flash[:order_alert] %></p>
 <h1>注文情報入力</h1>
 
   <h1>支払方法</h1>
@@ -6,15 +7,15 @@
       <label><%= f.radio_button :payment_method, :銀行振込 %>銀行振込</label>
 
   <h1>お届け先</h1>
-    <label><%= f.radio_button :address, :my_address %>ご自身の住所</label><br>
+    <label><%= radio_button(:address_select, :address_type, :my_address) %>ご自身の住所</label><br>
      〒<%= @customer.postcode + " " + @customer.address %><br>
       <%= @customer.last_name + @customer.first_name %>
     <br>
 
-      <label><%= f.radio_button :address, :registered_address %>登録済住所から選択</label><br>
-        <%= f.collection_select :address_id, Address.all, :id, :customer_imformation %>
+      <label><%= radio_button(:address_select, :address_type, :registered_address) %>登録済住所から選択</label><br>
+        <%= collection_select(:address_select, :address_id, @customer.addresses.all, :id, :customer_imformation) %>
       <br>
-      <label><%= f.radio_button :address, :new_address %>新しいお届け先</label><br>
+      <label><%= radio_button(:address_select, :address_type, :new_address) %>新しいお届け先</label><br>
         <%= f.label :postcode, "郵便番号（ハイフンなし）" %>
         <%= f.text_field :postcode %>
         <br>
@@ -23,7 +24,6 @@
         <br>
         <%= f.label :recieve_name, "宛名" %>
         <%= f.text_field :recieve_name %>
-        <br>
         <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
     <% end %>
 </div>

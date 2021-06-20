@@ -15,5 +15,3 @@ class Address < ApplicationRecord
 
   
 end
-
-=======

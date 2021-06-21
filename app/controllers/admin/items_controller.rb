@@ -16,7 +16,6 @@ class Admin::ItemsController < ApplicationController
     else
       redirect_back(fallback_location: root_path)
     end
-
   end
 
   def show
@@ -35,7 +34,8 @@ class Admin::ItemsController < ApplicationController
        redirect_to admin_item_path(@item.id)
     else
       redirect_back(fallback_location: root_path)
-    end
+
+    end     
   end
 
   private

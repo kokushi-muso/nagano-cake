@@ -9,30 +9,17 @@
       <th>小計</th>
     </tr>
   </thead>
-
   <tbody>
     <% @carts.each do |cart| %>
     <tr>
-      <td>
-        <%= attachment_image_tag cart.item, :image, size:"50x50" %>
-      </td>
-
-      <td>
-        <%= (cart.item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %>
-      </td>
-
-      <td>
-        <%= cart.quantity %>
-      </td>
-
-      <td>
-        <%= ((cart.item.price_excluding_tax * 1.1).to_i * cart.quantity).to_s(:delimited) %>
-      </td>
+      <td><%= attachment_image_tag cart.item, :image, size:"50x50" %></td>
+      <td><%= (cart.item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %></td>
+      <td><%= cart.quantity %></td>
+      <td><%= ((cart.item.price_excluding_tax * 1.1).to_i * cart.quantity).to_s(:delimited) %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
@@ -41,32 +28,27 @@
       <th>請求金額</th>
     </tr>
   </thead>
-
   <%= form_with model: @order, local: true do |f| %>
   <tbody>
     <tr>
-      <td>
-        <%= f.hidden_field :shipping_fee, :value=> 800 %>
-      </td>
-
-      <td>
-        <!--後で小計の総和を表示する-->
-        <%= @order.total_price %>
-      </td>
-
-      <td>
-        <%= 1800 %>
-      </td>
+      <td><%= 800 %><%= f.hidden_field :shipping_fee, :value=> 800 %></td>
+      <td><%= @total_price.to_s(:delimited) %></td>
+      <td><%= (@total_price * 1.1).to_i.to_s(:delimited) %><%= f.hidden_field :total_price, :value => (@total_price * 1.1).to_i.to_s(:delimited) %></td>
     </tr>
   </tbody>
 </table>
 
 <h1>支払方法</h1>
- <%= @order.payment_method %>
+  <%= @order.payment_method %>
+  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
 
 <h1>お届け先</h1>
+  <%= @order.postcode %>
+  <%= f.hidden_field :postcode, :value => @order.postcode %>
   <%= @order.address %>
-
+  <%= f.hidden_field :address, :value => @order.address %>
+  <%= @order.recieve_name %>
+  <%= f.hidden_field :recieve_name, :recieve_name => @order.recieve_name %>
 <br>
 <%= f.submit "注文を確定する", class: "btn btn-success" %>
 <% end %>

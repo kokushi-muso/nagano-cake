@@ -7,7 +7,7 @@ class Admin::OrderItemsController < ApplicationController
     if params[:order_item][:product_status] == "製作中"
       imformation.update(order_status:2)
     end
-    unless imformation.order_items.all?{ |order_item| order_item.product_status == "製作完了"}
+    if imformation.order_items.all?{ |order_item| order_item.product_status == "製作完了"}
       imformation.update(order_status:4)
     end
     if @order_item.update(order_item_params)

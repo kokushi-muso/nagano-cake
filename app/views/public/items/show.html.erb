@@ -1,11 +1,19 @@
-<%= attachment_image_tag @item, :image, size:"50x50" %>
-<%= @item.name %>
-<%= @item.introduction  %>
-￥<%= (@item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %>（税込）
+<div class="row">
+  <div class="col-lg-6">
+    <div class="item-image">
+      <%= attachment_image_tag @item, :image, size:"300x250" %>
+    </div>
+  </div>
 
-<%= form_with model: @cart, local: true do |f| %>
-  <%= f.select :quantity, ["1","2","3","4","5"], { include_blank: '個数選択'} %>
-  <!--プルダウンリストの数を決め、それを短く記述できるコードを考える。-->
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <%= f.submit "カートに入れる", class: 'btn btn-success' %>
-<% end %>
+  <div class="col-lg-6">
+    <p class="name"><%= @item.name %></p>
+    <p class="introduction"><%= @item.introduction  %></p>
+    <p><span class="price">￥<%= (@item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %></span>（税込）</p>
+
+    <%= form_with model: @cart, local: true do |f| %>
+      <%= f.number_field :quantity, max:10, min:1, placeholder:"個数選択" %>
+      <!--プルダウンリストの数を決め、それを短く記述できるコードを考える。-->
+      <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

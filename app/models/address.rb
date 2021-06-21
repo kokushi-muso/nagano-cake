@@ -12,6 +12,4 @@ class Address < ApplicationRecord
     validates :recieve_name
     validates :customer_id
   end
-
-  
 end

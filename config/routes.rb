@@ -15,7 +15,11 @@ Rails.application.routes.draw do
       post :confirm, action: :confirm, on: :new
       get :thanks, action: :thanks, on: :new
     end
-    resources :carts, except:[:new, :show, :edit]
+    resources :carts, except:[:new, :show, :edit] do
+      collection do
+        delete :destroy_all
+      end
+    end
     resources :items, only:[:index, :show]
     root to: 'homes#top'
     get "about" => 'homes#about'

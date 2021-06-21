@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   
   def mypage
     @customer = current_customer
@@ -11,10 +12,11 @@ class Public::CustomersController < ApplicationController
   def update
     customer = Customer.find(params[:id])
     if customer.update(customer_params)
-      flash[:notice] = '会員情報を編集しました'
+      flash[:notice] = '会員情報の変更を保存しました。'
       redirect_to customers_mypage_path
     else
       @customer = customer
+      flash[:alert] = "正しく入力してください。"
       render :edit
     end
   end

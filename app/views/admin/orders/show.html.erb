@@ -20,9 +20,9 @@
         <tr>
         　<th>配送先</th>
         　<td>
-        　    <%= @order.postcode %>
+        　   〒 <%= @order.postcode %>
              <%= @order.address %><br>
-        　   <%= @order.recieve_name %>
+        　    <%= @order.recieve_name %>
         　</td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-2 align-self-end">
                   <div class="form-group">
-                    <%= f.submit '更新'  ,class: "btn btn-primary ml-5" %>
+                    <%= f.submit '更新'  ,class: "btn btn-success ml-5" %>
                   </div>
                 </div>
               </div>

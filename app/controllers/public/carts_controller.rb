@@ -21,7 +21,7 @@ class Public::CartsController < ApplicationController
       flash[:notice] = "カートに商品を追加しました"
       redirect_to carts_path
     else
-      flash[:alert] = "カートに商品を追加できませんんでした"
+      flash[:alert] = "個数を入力してください"
       @item = Item.find(params[:cart][:item_id])
       @cart = @cart
       render 'public/items/show'
@@ -31,12 +31,21 @@ class Public::CartsController < ApplicationController
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
+    flash[:notice] = "カートから1件の商品を削除しました。"
+    redirect_to carts_path
+  end
+  
+  def destroy_all
+    @carts = current_customer.carts
+    @carts.destroy_all
+    flash[:notice] = "カート内を空にしました。"
     redirect_to carts_path
   end
 
   def update
     cart = Cart.find(params[:id])
     cart.update(cart_params)
+    flash[:notice] = "個数を変更しました。"
     redirect_to carts_path
   end
 

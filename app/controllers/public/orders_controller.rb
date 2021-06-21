@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+  
   def new
     @order = Order.new
     @customer = current_customer
@@ -6,12 +8,25 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = current_customer.orders.new(order_params)
+    
+    if params[:address_select][:address_type] == "my_address"
+      customer = current_customer
+      @order.postcode = customer.postcode
+      @order.address = customer.address
+      @order.recieve_name = customer.last_name + " " + customer.first_name
+    elsif params[:address_select][:address_type] == "registered_address"
+      shipping_address = Address.find_by(id: params[:address_select][:address_id].to_i)
+      @order.postcode = shipping_address.postcode
+      @order.address = shipping_address.address
+      @order.recieve_name = shipping_address.recieve_name
+    end
+    
     @carts = current_customer.carts
-    @total_price = total_price
+    @total_price = (total_price * TAX).to_i
     unless @order.valid?
-      @order = current_customer.orders.new(order_params)
+      @order = @order
       @customer = current_customer
-      flash[:notice] = "正しく入力してください"
+      flash[:order_alert] = "正しく入力してください"
       render :new
     end
   end
@@ -25,9 +40,18 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @SHIPPING_FEE = SHIPPING_FEE
   end
 
   def create
+    
+    if params[:back].present?
+      @order = Order.new(order_params)
+      @customer = current_customer
+      render :new
+      return
+    end
+    
     order = current_customer.orders.new
     order.shipping_fee = params[:order][:shipping_fee]
     order.payment_method = params[:order][:payment_method]
@@ -35,7 +59,7 @@ class Public::OrdersController < ApplicationController
     order.postcode = params[:order][:postcode]
     order.address = params[:order][:address]
     order.order_status = :入金待ち
-    order.total_price = total_price * TAX
+    order.total_price = params[:order][:total_price]
     order.save
     
     @order_id = order.attributes['id']
@@ -44,7 +68,7 @@ class Public::OrdersController < ApplicationController
       order_item = OrderItem.new
       order_item.item_id = cart.item.id
       order_item.quantity = cart.quantity
-      order_item.price_including_tax = cart.item.price_excluding_tax * cart.quantity * TAX
+      order_item.price_including_tax = cart.item.price_excluding_tax * TAX
       order_item.order_id = @order_id
       order_item.save
     end
@@ -53,6 +77,7 @@ class Public::OrdersController < ApplicationController
   end
   
   TAX = 1.1
+  SHIPPING_FEE = 800
 
   def total_price
     @carts = current_customer.carts
@@ -65,6 +90,7 @@ class Public::OrdersController < ApplicationController
   end
 
   private
+  
   def order_params
     params.require(:order).permit(
       :postcode,
@@ -75,7 +101,7 @@ class Public::OrdersController < ApplicationController
       :shipping_fee,
       :payment_method,
       :total_price,
-      :order_status
+      :order_status,
       )
   end
 end

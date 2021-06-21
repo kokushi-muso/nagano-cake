@@ -12,30 +12,19 @@
 </div>
 
 <ul class="flex">
+  <% @items.each do |item| %>
   <li class="item">
-    <img src="/assets/cake2.jpeg" alt="">
+    <%= attachment_image_tag item, :image %>
+    <%= link_to item_path(item) do %>
     <div class="mask">
-      <div class="caption"><p>商品説明</p></div>
+      <div class="caption">
+        <h1><%= item.name %></h1>
+        <p>¥<%= (item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %></p>
+      </div>
     </div>
+    <% end %>
   </li>
-  <li class="item">
-    <img src="/assets/prin1.jpeg" alt="">
-    <div class="mask">
-      <div class="caption"><p>商品説明</p></div>
-    </div>
-    </li>
-  <li class="item">
-    <img src="assets/cookie1.jpeg" alt="">
-    <div class="mask">
-      <div class="caption"><p>商品説明</p></div>
-    </div>
-  </li>
-  <li class="item">
-    <img src="assets/cake11.jpeg" alt="">
-    <div class="mask">
-      <div class="caption"><p>商品説明</p></div>
-    </div>
-  </li>
+  <% end %>
 </ul>
 
 <div class="text">

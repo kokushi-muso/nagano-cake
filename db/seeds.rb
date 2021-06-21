@@ -77,7 +77,7 @@ Address.create(
   recieve_name: '吉村 洋子',
   customer_id: 1
   )
-  
+
 Address.create(
   postcode: '6661111',
   address: '福岡県福岡市博多区東公園0-0',

@@ -97,7 +97,7 @@
           <tr>
             <th>商品合計</th>
             <td  class="text-right">
-              ¥<%= @order.total_price.to_s(:delimited) %>
+              ¥<%= (@order.total_price.to_s - @order.shipping_fee) %>
             </td>
           </tr>
           <tr>

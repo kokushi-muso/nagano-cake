@@ -3,9 +3,10 @@
 <%= @item.introduction  %>
 ￥<%= (@item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %>（税込）
 
+
 <%= form_with model: @cart, local: true do |f| %>
-  <%= f.select :quantity, ["1","2","3","4","5"], { include_blank: '個数選択'} %>
-  <!--プルダウンリストの数を決め、それを短く記述できるコードを考える。-->
+  <%= f.number_field :quantity, max: 10, min: 1, placeholder: "個数選択" %>
+
   <%= f.hidden_field :item_id, :value => @item.id %>
   <%= f.submit "カートに入れる", class: 'btn btn-success' %>
 <% end %>

@@ -10,11 +10,12 @@ class Admin::OrderItemsController < ApplicationController
       render "show"
     end
 
-  end
-  private
 
-  def order_item_params
-    params.require(:order_item).permit(:product_status)
-  end
+    private
 
+    def order_item_params
+      params.require(:order_item).permit(:product_status)
+    end
+
+  end
 end

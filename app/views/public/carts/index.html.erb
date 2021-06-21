@@ -29,8 +29,7 @@
 
         <td>
           <%= form_with(model: cart, url: cart_path(cart.id),local: true,method: :patch) do |f| %>
-            <%= f.select :quantity, ["1","2","3","4","5"] %>
-            <!--プルダウンリストの数を決め、それを短く記述できるコードを考える。-->
+            <%= f.number_field :quantity, max:10, min:1 %>
             <%= f.submit "変更", class: 'btn btn-success' %>
           <% end %>
         </td>

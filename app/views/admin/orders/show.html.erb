@@ -67,14 +67,14 @@
             <th class="text-center table-active">小計</th>
             <th class="table-active">製作ステータス</th>
           </tr>
+          <% @order_items.each do |item| %>
           <tr>
-            <% @order_items.each do |item| %>
               <td><%= item.item.name %></td>
               <td><%= item.price_including_tax %></td>
               <td><%= item.quantity %></td>
               <td><%= item.quantity * item.price_including_tax %></td>
               <td>
-                <%= form_with model: item, url: admin_order_order_item_path(item), method: :patch, local: true do |f| %>
+                <%= form_with model: item, url: admin_order_order_item_path(@order,item), method: :patch, local: true do |f| %>
                   <div class="row">
                   	<div class="col-2">
                       <div class="form-group">
@@ -83,21 +83,21 @@
                     </div>
                     <div class="col-2 align-self-end">
                       <div class="form-group">
-                        <%= f.submit '更新'  ,class: "btn btn-primary ml-5" %>
+                        <%= f.submit '更新'  ,class: "btn btn-success ml-5" %>
                       </div>
                     </div>
                   </div>
                 <% end %>
               </td>
-            <% end %>
           </tr>
+          <% end %>
         </table>
         <!--料金情報-->
         <table class="admin-order-details col-md-3 ml-auto mt-auto admin-customer-show">
           <tr>
             <th>商品合計</th>
             <td  class="text-right">
-              ¥<%= (@order.total_price.to_s - @order.shipping_fee) %>
+              ¥<%= (@order.total_price - @order.shipping_fee).to_s(:delimited) %>
             </td>
           </tr>
           <tr>
@@ -109,7 +109,7 @@
           <tr>
             <th>ご請求額</th>
             <td class="text-right">
-              ¥<%= (@order.total_price.to_i + @order.shipping_fee.to_i).to_s(:delimited) %>
+              ¥<%= (@order.total_price.to_i).to_s(:delimited) %>
             </td>
           </tr>
         </table>

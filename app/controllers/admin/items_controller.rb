@@ -1,4 +1,7 @@
 class Admin::ItemsController < ApplicationController
+  
+  before_action :authenticate_admin!
+  
   def index
     @items = Item.all.page(params[:page]).per(4)
     # ページネーション
@@ -12,6 +15,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       # 詳細画面へ遷移
+      flash[:notice] = "商品の登録に成功しました"
       redirect_to admin_item_path(@item.id)
     else
       redirect_back(fallback_location: root_path)
@@ -31,7 +35,8 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
       # 詳細画面へ遷移
-       redirect_to admin_item_path(@item.id)
+      flash[:notice] = "商品の編集に成功しました"
+      redirect_to admin_item_path(@item.id)
     else
       redirect_back(fallback_location: root_path)
 

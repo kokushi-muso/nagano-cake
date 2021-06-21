@@ -31,9 +31,9 @@
   <%= form_with model: @order, local: true do |f| %>
   <tbody>
     <tr>
-      <td><%= 800 %><%= f.hidden_field :shipping_fee, :value=> 800 %></td>
-      <td><%= @total_price.to_s(:delimited) %></td>
-      <td><%= (@total_price * 1.1).to_i.to_s(:delimited) %><%= f.hidden_field :total_price, :value => (@total_price * 1.1).to_i.to_s(:delimited) %></td>
+      <td>¥<%= 800 %><%= f.hidden_field :shipping_fee, :value=> 800 %></td>
+      <td>¥<%= @total_price.to_s(:delimited) %></td>
+      <td>¥<%= (@total_price + 800).to_s(:delimited) %><%= f.hidden_field :total_price, :value => @total_price + 800  %></td>
     </tr>
   </tbody>
 </table>
@@ -50,5 +50,8 @@
   <%= @order.recieve_name %>
   <%= f.hidden_field :recieve_name, :recieve_name => @order.recieve_name %>
 <br>
+<%= link_to "カートを中身を編集する", carts_path, class:"btn btn-secondary" %>
+<%= f.submit "情報入力に戻る", name: "back", class: "btn btn-secondary" %>
 <%= f.submit "注文を確定する", class: "btn btn-success" %>
+
 <% end %>

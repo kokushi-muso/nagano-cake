@@ -43,13 +43,13 @@
   <tbody>
     <tr>
       <td>
-        <%= @order.total_price.to_s(:delimited) %>
+        <%= @order.total_price - @order.shipping_fee %>
       </td>
       <td>
         <%= @order.shipping_fee %>
       </td>
       <td>
-        <%= (@order.total_price.to_i + @order.shipping_fee.to_i).to_s(:delimited) %>
+        <%= @order.total_price %>
       </td>
     </tr>
   </tbody>
@@ -70,8 +70,8 @@
     <tr>
       <td><%= item.item.name %></td>
       <td><%= item.price_including_tax %></td>
-      <td>item.quantity</td>
-      <td>item.price_including_tax * quantity %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.price_including_tax * item.quantity %></td>
     </tr>
     <% end %>
   </tbody>

@@ -1,4 +1,7 @@
 class Admin::CustomersController < ApplicationController
+  
+  before_action :authenticate_admin!
+  
   def index
     @customers = Customer.all.page(params[:page]).per(10)
      # ページネーション
@@ -16,6 +19,7 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       # 詳細画面へ遷移
+      flash[:notice] = '会員情報の編集に成功しました'
       redirect_to admin_customer_path(@customer.id)
     else
       redirect_back(fallback_location: root_path)

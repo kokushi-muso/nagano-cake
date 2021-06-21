@@ -4,8 +4,6 @@
       <div class = "col-md-12">
         <h1>商品一覧</h1>
 
-        
-=======
         <!--新規登録画面へ-->
         <p class = "text-right">
           <%= link_to new_admin_item_path, class:"btn btn-info" do %>
@@ -13,8 +11,6 @@
           <% end %>
         </p>
 
-      
-=======
         <table class="table">
           <thead>
             <tr>
@@ -34,7 +30,6 @@
                 <td><%= item.genre.name %></td>
 
                 <td><%= item.is_active ? "販売中" : "売切れ" %></td>
-=======
             </tr>
           <% end %>
           </tbody>

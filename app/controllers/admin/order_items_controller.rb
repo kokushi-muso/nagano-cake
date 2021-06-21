@@ -6,15 +6,16 @@ class Admin::OrderItemsController < ApplicationController
     flash[:success] ="製作ステータスを変更しました"
     @order_item = OrderItem.find_by(order_id: params[:order_id], id: params[:id])
     imformation = @order_item.order
-
-    if params[:order_item][:product_status] == "製作中"
-      imformation.update(order_status:2)
-    end
-    if imformation.order_items.all?{ |order_item| order_item.product_status == "製作完了"}
-      imformation.update(order_status:4)
-    end
+    @order_item.update(order_item_params)
+      if params[:order_item][:product_status] == "製作中"
+        imformation.update(order_status:2)
+      end
+      if imformation.order_items.all?{ |order_item| order_item.product_status == "製作完了"}
+        imformation.update(order_status:4)
+      end
       redirect_to admin_order_path(@order_item.order)
   end
+
 
   private
 

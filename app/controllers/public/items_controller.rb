@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
   
   def index
     #レイアウトの際に、個数を調整する
-    @items = Item.page(params[:page]).per(1)
+    @items = Item.all.page(params[:page])
   end
 
   def show

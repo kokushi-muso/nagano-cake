@@ -13,6 +13,7 @@
     <%= form_with model: @cart, local: true do |f| %>
       <%= f.number_field :quantity, max:10, min:1, placeholder:"個数選択" %>
       <!--プルダウンリストの数を決め、それを短く記述できるコードを考える。-->
+      <%= f.hidden_field :item_id, :value => @item.id, class: "field" %>
       <%= f.submit "カートに入れる", class: 'btn btn-success' %>
     <% end %>
   </div>

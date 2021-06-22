@@ -14,10 +14,6 @@ class Admin::OrderItemsController < ApplicationController
       end
       flash[:success] ="製作ステータスを変更しました"
       redirect_to admin_order_path(@order_item.order)
-    else
-      render "show"
-    end
-
   end
 
   private

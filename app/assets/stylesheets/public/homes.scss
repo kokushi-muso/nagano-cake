@@ -4,7 +4,7 @@ html {
   font-size: 100%;
 }
 
-body {
+body p{
   font-family: 'Kiwi Maru', serif;
   color: #2b2a27;
 }
@@ -31,10 +31,28 @@ a {
   margin-bottom: 80px;
 }
 
+.img-wrapper{
+animation-name:fadeInAnime;
+animation-duration:3s;
+animation-fill-mode:forwards;
+opacity:0;
+}
+
+@keyframes fadeInAnime{
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
 .text {
   text-align: center;
   margin-bottom: 80px;
-  
+
 }
 .text .site-title {
   margin-bottom: 20px;
@@ -111,7 +129,7 @@ a {
 }
 
 @media screen and (max-width: 1100px){
-  
+
   .about {
     flex-direction: column;
     margin: 50px 0;
@@ -122,6 +140,9 @@ a {
   .about-item img {
     margin-top: 40px;
   }
+  .item .masc {
+    opacity: 0;
+  }
 }
 
 
@@ -129,7 +150,7 @@ a {
   .text {
     padding: 0 20px;
   }
-  
+
   .flex {
     flex-direction: column;
   }

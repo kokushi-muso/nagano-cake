@@ -1,57 +1,89 @@
-<h1>注文情報確認</h1>
+<div id="confirm-main-visual"></div>
 
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @carts.each do |cart| %>
-    <tr>
-      <td><%= attachment_image_tag cart.item, :image, size:"50x50" %></td>
-      <td><%= (cart.item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %></td>
-      <td><%= cart.quantity %></td>
-      <td><%= ((cart.item.price_excluding_tax * 1.1).to_i * cart.quantity).to_s(:delimited) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th>送料</th>
-      <th>商品合計</th>
-      <th>請求金額</th>
-    </tr>
-  </thead>
-  <%= form_with model: @order, local: true do |f| %>
-  <tbody>
-    <tr>
-      <td>¥<%= 800 %><%= f.hidden_field :shipping_fee, :value=> 800 %></td>
-      <td>¥<%= @total_price.to_s(:delimited) %></td>
-      <td>¥<%= (@total_price + 800).to_s(:delimited) %><%= f.hidden_field :total_price, :value => @total_price + 800  %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container my-5">
+  <div class="row mb-4">
+    <h1>注文情報確認</h1>
+  </div>
+  <div class="row mb-4">
+    <div class="col-8 pl-0">
+      <table class='table table-bordered'>
+        <thead>
+          <tr>
+            <th class="table-active">商品名</th>
+            <th class="table-active">単価（税込）</th>
+            <th class="table-active">数量</th>
+            <th class="table-active">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @carts.each do |cart| %>
+          <tr>
+            <td><%= attachment_image_tag cart.item, :image, size:"50x50" %><%= cart.item.name %></td>
+            <td><%= (cart.item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %></td>
+            <td><%= cart.quantity %></td>
+            <td><%= ((cart.item.price_excluding_tax * 1.1).to_i * cart.quantity).to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4 pr-0">
+      <%= form_with model: @order, local: true do |f| %>
+      <table class='table table-bordered'>
+        <tr>
+          <th class="table-active">送料</th>
+          <td>¥<%= 800 %><%= f.hidden_field :shipping_fee, :value=> 800 %></td>
+        </tr>
+        <tr>
+          <th class="table-active">商品合計</th>
+          <td>¥<%= @total_price.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="table-active">請求金額</th>
+          <td>¥<%= (@total_price + 800).to_s(:delimited) %><%= f.hidden_field :total_price, :value => @total_price + 800  %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-3"><h3>支払方法</h3></div>
+    <div class="col-3"><%= @order.payment_method %></div>
+     <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+  </div>
+  <div class="row mb-5">
+    <div class="col-3"><h3>お届け先</h3></div>
+    <div class="col-7"><%= @order.postcode %>
+      <%= f.hidden_field :postcode, :value => @order.postcode %>
+      <%= @order.address %>
+      <%= f.hidden_field :address, :value => @order.address %><br/>
+      <%= @order.recieve_name %>
+      <%= f.hidden_field :recieve_name, :recieve_name => @order.recieve_name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 mx-0 px-0">
+      <%= link_to "カートの中身を編集する", carts_path, class:"btn btn-outline-secondary col-6 py-2 btn-sm" %>
+      <%= f.submit "情報入力に戻る", name: "back", class: "btn btn-outline-secondary col-4 py-2 btn-sm" %>
+    </div>
+    <div class="col-4 mx-0">
+      <%= f.submit "注文を確定する", class: "btn btn-success col-12 mr-0 pull-right" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<h1>支払方法</h1>
-  <%= @order.payment_method %>
-  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
 
-<h1>お届け先</h1>
-  <%= @order.postcode %>
-  <%= f.hidden_field :postcode, :value => @order.postcode %>
-  <%= @order.address %>
-  <%= f.hidden_field :address, :value => @order.address %>
-  <%= @order.recieve_name %>
-  <%= f.hidden_field :recieve_name, :recieve_name => @order.recieve_name %>
-<br>
-<%= link_to "カートを中身を編集する", carts_path, class:"btn btn-secondary" %>
-<%= f.submit "情報入力に戻る", name: "back", class: "btn btn-secondary" %>
-<%= f.submit "注文を確定する", class: "btn btn-success" %>
 
-<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

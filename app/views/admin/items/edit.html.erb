@@ -1,7 +1,6 @@
-<main>
 <p id ="notice"></p>
   <div class = "container">
-    <h1>商品編集</h1>
+    <h4>商品編集</h4>
 
     <%= form_with model:@item, url: admin_item_path(@item.id), local:true do |f| %>
       
@@ -85,4 +84,3 @@
       
     <% end %>
   </div>
-</main>

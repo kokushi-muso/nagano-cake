@@ -1,12 +1,34 @@
-<%= attachment_image_tag @item, :image, size:"50x50" %>
-<%= @item.name %>
-<%= @item.introduction  %>
-￥<%= (@item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %>（税込）
+<div id="show-main-visual"></div>
 
-
-<%= form_with model: @cart, local: true do |f| %>
-  <%= f.number_field :quantity, max: 10, min: 1, placeholder: "個数選択" %>
-
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <%= f.submit "カートに入れる", class: 'btn btn-success' %>
-<% end %>
+<div class="container">
+  
+  <div class="row mt-5 mb-5">
+    <div class="col-md-4 text-center">
+      <%= attachment_image_tag @item, :image %>
+    </div>
+    <div class="col-md-6 px-5">
+      <div class="row">
+        <h1><%= @item.name %></h1>      
+      </div>
+      <div class="row mt-3 mb-5">
+        <p style='line-height:2rem'>
+          <%= @item.introduction  %>
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-12 text-right py-0 mb-2">
+         <h2>￥<%= (@item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %>(税込)</h2>         
+        </div>
+      </div>
+      <div class='row mb-5'>
+        <div class="col-12 text-right py-0 mb-2">
+          <%= form_with model: @cart, local: true do, class:'mr-0 text-right' |f| %>
+            <%= f.number_field :quantity, max:10, min:1, placeholder:"個数選択" %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.submit "カートに入れる", class: 'btn btn-success btn-sm mr-0' %>
+          <% end %>
+        </div>
+      </div>          
+    </div>
+  </div>
+</div>

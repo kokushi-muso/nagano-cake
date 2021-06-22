@@ -12,9 +12,13 @@ class Admin::OrderItemsController < ApplicationController
       if imformation.order_items.all?{ |order_item| order_item.product_status == "製作完了"}
         imformation.update(order_status:3)
       end
+      flash[:success] ="製作ステータスを変更しました"
       redirect_to admin_order_path(@order_item.order)
-  end
+    else
+      render "show"
+    end
 
+  end
 
   private
 

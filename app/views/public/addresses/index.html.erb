@@ -1,4 +1,5 @@
-<h5>配送先登録/一覧</h5>
+<div class="container my-5">
+<h3 class="my-3">配送先登録/一覧</h3>
 
 <%= form_with model: @address, url: addresses_path, method: :POST, local: true do |f| %>
 <div class="row mb-3">
@@ -36,3 +37,4 @@
   </tr>
   <% end %>
 </table>
+</div>

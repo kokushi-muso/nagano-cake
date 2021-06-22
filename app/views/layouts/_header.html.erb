@@ -1,7 +1,7 @@
 <header class="m-0">
   <nav class="navbar navbar-expand navbar-light shadow-sm">
     <div class="container">
-      <%= link_to 'NaganoCake', root_path, class:'navbar-brand p-2' %></a>
+      <a class="navbar-brand p-0" href="/"><%= image_tag('nagano_cake.png') %></a>
       <ul class="navbar-nav">
         <!--お客様のログイン時-->
         <% if customer_signed_in? %>

@@ -13,14 +13,25 @@
         </thead>
         <tbody>
             <% @orders.each do |order| %>
-            <tr>
-              <td>
-                <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %>
-              </td>
-              <td><%= order.customer.last_name+order.customer.first_name %></td>
-              <td><%= order.order_items.count %></td>
-              <td><%= order.order_status %></td>
-            </tr>
+              <% if order.order_status == '発送済み' %>
+                <tr>
+                  <td class="bg-secondary text-white">
+                    <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %>
+                  </td>
+                  <td class="bg-secondary text-white"><%= order.customer.last_name+order.customer.first_name %></td>
+                  <td class="bg-secondary text-white"><%= order.order_items.count %></td>
+                  <td class="bg-secondary text-white"><%= order.order_status %></td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td>
+                    <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %>
+                  </td>
+                  <td><%= order.customer.last_name+order.customer.first_name %></td>
+                  <td><%= order.order_items.count %></td>
+                  <td><%= order.order_status %></td>
+                </tr>
+              <% end %>
             <% end %>
         </tbody>
       </table>

@@ -1,6 +1,5 @@
-<main>
-  <div class = "container">
-    <h1><%= @customer.last_name + " " + @customer.first_name %>さんの会員情報編集</h1>
+<div class = "container">
+    <h4><%= @customer.last_name + " " + @customer.first_name %>さんの会員情報編集</h4>
     
       <%= form_with model:@customer, url: admin_customer_path(@customer.id), local:true do |f| %>
       
@@ -107,6 +106,4 @@
         </table>
   
     <% end %>
-   
-  </div>
-</main>
+    </div>

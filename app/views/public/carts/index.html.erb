@@ -42,7 +42,7 @@
       
               <td>
                 <%= form_with(model: cart, url: cart_path(cart.id),local: true,method: :patch) do |f| %>
-                  <%= f.number_field :quantity, max:10, min:1 %>
+                  <%= f.number_field :quantity, max:10, min:1, placeholder:"個数選択" %>
                   <%= f.submit "変更", class: 'btn btn-success' %>
                 <% end %>
               </td>
@@ -54,7 +54,7 @@
               <td>
                 <%= link_to "削除する", cart_path(cart), method: :delete, class: "btn btn-danger" %>
               </td>
-            </tr>
+          </tr>
           <% end %>
         </tbody>
       </table>

@@ -9,7 +9,7 @@ class Admin::OrderItemsController < ApplicationController
         imformation.update(order_status:2)
       end
       if imformation.order_items.all?{ |order_item| order_item.product_status == "製作完了"}
-        imformation.update(order_status:4)
+        imformation.update(order_status:3)
       end
       redirect_to admin_order_path(@order_item.order)
   end

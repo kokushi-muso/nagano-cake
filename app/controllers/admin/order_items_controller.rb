@@ -2,6 +2,7 @@ class Admin::OrderItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def update
+    flash[:success] ="製作ステータスを変更しました"
     @order_item = OrderItem.find_by(order_id: params[:order_id], id: params[:id])
     imformation = @order_item.order
     @order_item.update(order_item_params)
@@ -18,6 +19,7 @@ class Admin::OrderItemsController < ApplicationController
     end
 
   end
+
   private
 
   def order_item_params

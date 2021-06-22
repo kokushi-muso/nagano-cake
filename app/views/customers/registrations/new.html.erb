@@ -1,4 +1,5 @@
-<div class="container">
+<div id="sign-in-main-visual"></div>
+<div class="container my-5">
   <h2>新規会員登録</h2>
 
 <%= form_with model: @customer, url: customer_registration_path, id:'new_user', class:'new_user', local: true do |f| %>
@@ -7,7 +8,7 @@
       <label class="col-lg-3">名前</label>
       <div class="col-lg-3">
         <span class="mr-3">(姓)</span>
-        <%= f.text_field :last_name, autocomplete: 'first_name', placeholder:"令和" %>
+        <%= f.text_field :last_name, autocomplete: 'first_name', placeholder:"令和", class:"mb-2" %>
       </div>
       <div class="col-lg-3">
         <span class="mr-3">(名)</span>
@@ -19,7 +20,7 @@
       <label class="col-lg-3">フリガナ</label>
       <div class="col-lg-3">
         <span>(セイ)</span>
-        <%= f.text_field :last_name_kana, autocomplete: 'first_name_kana', placeholder:'レイワ' %>
+        <%= f.text_field :last_name_kana, autocomplete: 'first_name_kana', placeholder:'レイワ', class:"mb-2" %>
       </div>
       <div class="col-lg-3">
         <span>(メイ)</span>

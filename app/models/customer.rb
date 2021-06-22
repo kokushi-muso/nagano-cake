@@ -29,4 +29,7 @@ class Customer < ApplicationRecord
     super && (self.is_valid == true)
   end
 
+    def fullname
+      Customer.last_name + Customer.first_name
+    end
 end

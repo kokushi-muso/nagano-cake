@@ -30,7 +30,7 @@
                 <th>商品ID</th>
                 <th>商品画像</th>
                 <th>商品名</th>
-                <th>説明文</th>
+                <th>税込価格<br>(税抜価格)</th>
             </tr>
         </thead>
         <tbody>
@@ -40,13 +40,13 @@
                 <%= item.id %>
               </td>
                 <td>
-                    <%= attachment_image_tag(item, :image, size: "50x50",  format: 'jpeg', fallback: "no_image.jpg") %>
+                    <%= attachment_image_tag(item, :image, size: "70x70",  format: 'jpeg', fallback: "no_image.jpg") %>
                 </td>
                 <td>
                     <%= link_to item.name, admin_item_path(item.id) %>
                 </td>
-                <td>
-                    <%= item.introduction %>
+                <td><%= (item.price_excluding_tax * 1.1).round.to_s(:delimited) %>円</br>
+                    (<%= item.price_excluding_tax.to_s(:delimited) %>円)
                 </td>
             </tr>
         <% end %>

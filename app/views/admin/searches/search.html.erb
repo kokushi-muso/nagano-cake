@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="col-xs-12">
+    <% if @model == "customer" %>
+    <h2>Customers search for '<%= @value %>'</h2>
+    <table class="table">
+        <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @datas.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td><%= link_to customer.last_name + " " + customer.first_name, admin_customer_path(customer.id) %></td>
+              <td><%= customer.email %></td>
+              <td><%= customer.is_valid ? "有効": "退会" %></td> 
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <% elsif @model == "item" %>
+    <h2>Items search for '<%= @value %>'</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>商品ID</th>
+                <th>商品画像</th>
+                <th>商品名</th>
+                <th>説明文</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @datas.each do |item| %>
+            <tr>
+              <td>
+                <%= item.id %>
+              </td>
+                <td>
+                    <%= attachment_image_tag(item, :image, size: "50x50",  format: 'jpeg', fallback: "no_image.jpg") %>
+                </td>
+                <td>
+                    <%= link_to item.name, admin_item_path(item.id) %>
+                </td>
+                <td>
+                    <%= item.introduction %>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <% end %>
+  </div>
+</div>

@@ -4,7 +4,7 @@ html {
   font-size: 100%;
 }
 
-body {
+body p{
   font-family: 'Kiwi Maru', serif;
   color: #2b2a27;
 }
@@ -121,6 +121,9 @@ a {
   }
   .about-item img {
     margin-top: 40px;
+  }
+  .item .masc {
+    opacity: 0;
   }
 }
 

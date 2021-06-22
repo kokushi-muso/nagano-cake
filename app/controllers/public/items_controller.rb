@@ -1,8 +1,10 @@
 class Public::ItemsController < ApplicationController
-  
+
   def index
-    #レイアウトの際に、個数を調整する
-    @items = Item.page(params[:page]).per(1)
+    #per()で1ページに入れたい数を変更する
+    @items = Item.page(params[:page]).per(8)
+    #商品の数をすべて数える場合用（1ページに表示される数を出す場合は下の行を消す
+    @items_count = Item.all
   end
 
   def show

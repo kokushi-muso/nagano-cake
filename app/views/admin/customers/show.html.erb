@@ -1,5 +1,5 @@
-  <div class = "container">
-    <h4><%= @customer.last_name + " " + @customer.first_name %>さんの会員詳細</h4>
+  <div class = "container pt-5">
+    <h4 class="pb-3"><%= @customer.last_name + " " + @customer.first_name %>さんの会員詳細</h4>
       <div class = "row">
         <div class = "col-md-12">
         <table>
@@ -30,7 +30,7 @@
           <tr>
             <th width="200" height="50">メールアドレス</th>
             <td width="400" height="50"><%= @customer.email %></td>
-          </tr> 
+          </tr>
           <tr>
             <th width="200" height="50">会員ステータス</th>
             <td width="400" height="50"><%= @customer.is_valid ? "有効" : "退会" %></td>

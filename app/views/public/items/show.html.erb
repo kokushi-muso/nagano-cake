@@ -3,7 +3,7 @@
 <div class="container">
 
   <div class="row mt-5 mb-5">
-    <div class="col-md-4 text-center">
+    <div class="col-md-6 text-center mb-5">
       <%= attachment_image_tag @item, :image %>
     </div>
     <div class="col-md-6 px-5">
@@ -22,10 +22,10 @@
       </div>
       <div class='row mb-5'>
         <div class="col-12 text-right py-0 mb-2">
-          <%= form_with model: @cart, class:'mr-0 text-right', local: true do |f| %>
+          <%= form_with model: @cart, class:'mr-0 text-right align-bottom', local: true do |f| %>
             <%= f.number_field :quantity, max:10, min:1, placeholder:"個数選択" %>
             <%= f.hidden_field :item_id, :value => @item.id %>
-            <%= f.submit "カートに入れる", class: 'btn btn-success btn-sm mr-0' %>
+            <%= f.submit "カートに入れる", class: 'btn btn-success btn-sm mr-0 align-bottom' %>
           <% end %>
         </div>
       </div>

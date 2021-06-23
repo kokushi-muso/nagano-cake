@@ -14,3 +14,17 @@
   background-repeat: no-repeat;
   margin-bottom: 80px;
 }
+#orders-index-main-visual {
+  height: 30vh;
+  background-image: image-url('orders_index.jpg');
+  background-size: cover;
+  background-position: bottom;
+  margin-bottom: 40px;
+}
+#orders-show-main-visual {
+  height: 30vh;
+  background-image: image-url('orders_show.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 40px;
+}

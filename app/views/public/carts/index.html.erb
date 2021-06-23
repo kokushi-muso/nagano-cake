@@ -10,7 +10,7 @@
     <div class="col-md-10">
      <% if @carts.present? %>
       <%= link_to "カートを空にする", destroy_all_carts_path, method: :delete, class: "btn btn-danger" %>
-     <% end %>     
+     <% end %>
     </div>
 
   </div>
@@ -26,7 +26,7 @@
             <th class="table-active"></th>
           </tr>
         </thead>
-      
+
         <tbody>
           <% @carts.each do |cart| %>
             <tr>
@@ -34,23 +34,23 @@
                 <%= attachment_image_tag cart.item, :image, size:"50x50" %>
                 <%= cart.item.name %>
               </td>
-      
+
               <td>
                 <%= (cart.item.price_excluding_tax * 1.1).to_i.to_s(:delimited) %>
                 <!--to_s(:delimited)で3桁区切りを表示する-->
               </td>
-      
+
               <td>
                 <%= form_with(model: cart, url: cart_path(cart.id),local: true,method: :patch) do |f| %>
                   <%= f.number_field :quantity, max:10, min:1, placeholder:"個数選択" %>
                   <%= f.submit "変更", class: 'btn btn-success' %>
                 <% end %>
               </td>
-      
+
               <td>
                 <%= ((cart.item.price_excluding_tax * 1.1).to_i * cart.quantity).to_s(:delimited) %>
               </td>
-      
+
               <td>
                 <%= link_to "削除する", cart_path(cart), method: :delete, class: "btn btn-danger" %>
               </td>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'search' => "searches#search"
     resources :genres, except:[:destroy, :show, :new]
     resources :customers, except:[:destroy, :create, :new]
     resources :items, except:[:destroy]

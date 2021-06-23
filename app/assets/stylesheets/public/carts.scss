@@ -4,5 +4,17 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
+}
+
+input[type="submit"] {
+  margin: 10px;
+}
+
+input[type="number"] {
+  margin-right: 10px;
+}
+
+.price {
+  margin-top: 16px;
 }

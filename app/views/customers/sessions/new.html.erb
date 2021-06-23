@@ -1,33 +1,16 @@
-<div class="container">
-  <h4 class="ml-4 my-4 bg-light px-3 d-inline d-inline-flex">ログイン</h2>
-  <div><p class='ml-5 d-inline d-inline-flex bg-light'>会員の方はこちらからログインしてください</p></div>
-  
-  <div class="container ml-5">
-  <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
-    <div class="row mb-3">
-      <label class="col-lg-2 pl-0 ml-lg-4 ">メールアドレス</label>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", size: '40' %>
-    </div>
-  
-    <div class="row mb-3">
-      <label class="col-lg-2 pl-0 ml-lg-4">パスワード</label>
-      <%= f.password_field :password, autocomplete: "current-password", size: '40' %>
-    </div>
-    
-    <div class="row">
-      <label class="lg-col-2 pl-0 ml-lg-4"></label>
-      <%= f.submit "ログイン", class:'btn btn-info offset-lg-2 px-3' %>
-      </div>
-    </div>
-  
-  <% end %>
+<div id="sign-in-main-visual"></div>
+<div class="container my-5">
+  <div class="col-lg-5 col-md-8 col-sm-10 mx-auto">
+    <h4>ログイン</h4>
+    <p>会員の方はこちらからログインしてください</p> 
+    <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+    <label>メールアドレス</label><br/>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control' %><br/>
+    <label>パスワード</label><br/>
+    <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+    <%= f.submit "ログイン", class:'btn btn-info form-control my-4' %>
+    <% end %>
+    <h6 class="pl-0">登録がお済みでない方は</h6>
+    <p><%= link_to 'こちら', new_customer_registration_path %>から新規登録をおこ行ってください。</p>  
   </div>
-  
-  <div class="container mt-5 ml-5 pl-0">
-    <div><h6 class='d-inline d-inline-flex bg-light'>登録がお済みでない方はこちら</h6></div>
-    <p><%= link_to 'こちら', new_customer_registration_path %>から新規登録をおこ行ってください。</p>
-  </div>
-  
-  
-
 </div>

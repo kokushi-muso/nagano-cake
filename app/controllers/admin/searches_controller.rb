@@ -1,8 +1,6 @@
 class Admin::SearchesController < ApplicationController
 
   def search
-    redirect_to root_path if params[:value] == ""
-    
     @model = params["search"]["model"]
     @value = params["search"]["value"]
     @datas = search_for(@model, @value)

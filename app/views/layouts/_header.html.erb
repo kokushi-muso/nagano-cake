@@ -12,6 +12,7 @@
         <li class="nav-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class:'nav-link' %></li>
       </ul>
         <!--管理者のログイン時-->
+      <ul class="navbar-nav">
         <% elsif admin_signed_in? %>
         <li class="nav-item"><%= link_to '商品一覧', admin_items_path, class:'nav-link' %></li>
         <li class="nav-item"><%= link_to '会員一覧', admin_customers_path, class:'nav-link' %></li>
@@ -20,13 +21,16 @@
         <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:'nav-link' %></li>
         <!--検索機能-->
         <li>
-          <%= form_with url:admin_search_path, method: :get, local: true do |f| %>
-          <%= f.text_field 'search[value]',:placeholder => "キーワード検索", required: true %>
-          <%= f.select 'search[model]', options_for_select({"会員名" => "customer","商品名" => "item"}) %>
-          <%= f.submit :"検索", class: "btn btn-primary" %>
-          <% end %>
+          <div id="search-wrap">
+            <%= form_with url:admin_search_path, method: :get, local: true do |f| %>
+              <%= f.text_field 'search[value]',:placeholder => " 　キーワード検索",  id:"search-text", required: true %>
+              <%= f.select 'search[model]', options_for_select({"会員名" => "customer","商品名" => "item"}) %>
+            <% end %>
+          </div>
         </li>
+      </ul>
         <!--ログアウト時-->
+      <ul class="navbar-nav ml-auto">
         <% else %>
         <li class="nav-item"><%= link_to 'About', about_path, class:'nav-link' %></li>
         <li class="nav-item"><%= link_to '商品一覧', items_path, class:'nav-link' %></li>

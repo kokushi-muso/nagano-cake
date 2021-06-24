@@ -35,7 +35,7 @@
   -webkit-animation: fade-in-out 3s ease 1s forwards;
   animation: fade-in-out 3s ease 1s forwards;
   visibility: hidden;
-  z-index: 1;
+  z-index: 2;
 }
 
 .flash-message p {
@@ -44,6 +44,7 @@
   text-align: center;
   font-size: 20px;
   color: #fff;
+  z-index: 2;
 }
 
 @-webkit-keyframes fade-in-out {
@@ -63,9 +64,9 @@
 /*検索窓のエリア*/
  #search-wrap {
   position: absolute;/*絶対配置にして*/
-  z-index: 2;/*最前面に設定。数字は変更可*/
+  z-index: 1;/*最前面に設定。数字は変更可*/
   top:3px;
-  right:450px;
+  right:250px;
 }
 
 /*テキスト入力input設定*/
@@ -80,6 +81,7 @@
   transition: all 0.5s;/*transitionを使ってスムースに伸ばす*/
   outline: none;
   cursor: pointer;/*カーソルを指マークに*/
+  z-index: 1;
 }
 
 /*テキスト入力inputにフォーカスした時の形状*/

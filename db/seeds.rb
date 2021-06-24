@@ -58,7 +58,7 @@ Customer.create(
   )
 
 Admin.create(
-  email: 'nagano.cake.infomation@gmail.com',
+  email: 'ｘcd',
   password:'nagano',
   password_confirmation:'nagano'
   )

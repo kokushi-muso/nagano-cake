@@ -1,3 +1,15 @@
 // Place all the styles related to the admin/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+  display: inline-bck;
+}
+
+th {
+  width: 200px;
+  margin: 50px 100px 50px 0px;
+}
+
+td {
+  width: 500px;
+}

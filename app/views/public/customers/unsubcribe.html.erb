@@ -1,0 +1,21 @@
+<div id="customer-destroy-header-visual"></div>
+
+<div class="container my-5">
+  <div class="row text-center d-flex align-items-center">
+    <div class="col-lg-6 col-md-6 col-12 col-sm-12 text-center">
+      <div class="text-center mb-3">
+        <h4>本当に退会しますか?</h4>
+      </div>
+      <div class="text-center mb-4">
+        <p>退会すると、会員登録情報や<br>これまでの購入履歴が閲覧できなくなります。<br/>退会する場合は、「退会する」をクリックしてください。</p>
+      </div>
+      <div class="text-center mb-5">
+        <%= link_to '退会しない', customers_mypage_path, class:'btn btn-primary btn-sm px-4' %>
+        <%= link_to '退会する', withdraw_customers_path, method: :PATCH, data:{confirm: "このまま退会する"}, class:'btn btn-danger btn-sm px-4' %>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6 col-12 col-sm-12">
+      <%= image_tag "destroy_main.jpg", class:"col-lg-10" %>    
+    </div>
+  </div>
+</div>

@@ -1,3 +1,28 @@
-// Place all the styles related to the public/customers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#mypage-main-visual {
+  height: 30vh;
+  background-image: image-url('mypage.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 40px;
+}
+#customer-edit-main-visual {
+  height: 30vh;
+  background-image: image-url('customer_edit.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 40px;
+}
+#customer-destroy-header-visual {
+  height: 30vh;
+  background-image: image-url('customer_edit.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 40px;
+}
+#sign-in-main-visual {
+  height: 30vh;
+  background-image: image-url('orders_index.jpg');
+  background-size: cover;
+  background-position: bottom;
+  margin-bottom: 40px;
+}
